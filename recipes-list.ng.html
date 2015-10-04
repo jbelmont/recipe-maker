@@ -1,0 +1,15 @@
+<form>
+    <label>Name</label>
+    <input ng-model="newRecipe.name">
+    <label>Description</label>
+    <input ng-model="newRecipe.description">
+    <button ng-click="recipes.save(newRecipe); newRecipe=''">Add</button>
+    <button ng-click="removeAll()">Remove All Recipes</button>
+</form>
+<ul>
+    <li ng-repeat="recipe in recipes">
+        <a href="/recipes/{{recipe._id}}">{{recipe.name}}</a>
+        <p>{{recipe.description}}</p>
+        <button ng-click="remove(recipe)">X</button>
+    </li>
+</ul>
