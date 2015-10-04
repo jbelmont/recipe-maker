@@ -59,8 +59,6 @@ $RECYCLE.BIN/
 # Mongo Explorer plugin:
 # .idea/mongoSettings.xml
 
-# Meteor.js Files
-.meteor/
 
 ## File-based project format:
 *.ipr
