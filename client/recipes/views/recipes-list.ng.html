@@ -3,6 +3,8 @@
     <input ng-model="newRecipe.name">
     <label>Description</label>
     <input ng-model="newRecipe.description">
+    <label>Public</label>
+    <input type="checkbox" ng-model="newRecipe.public" />
     <button ng-click="newRecipe.owner=$root.currentUser._id; recipes.push(newRecipe)"></button>
     <button ng-click="removeAll()">Remove All Recipes</button>
 </form>
