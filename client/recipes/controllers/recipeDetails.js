@@ -1,9 +1,9 @@
 angular.module("recipes").controller("RecipeDetailsCtrl", ['$scope', '$stateParams', '$meteor',
     function($scope, $stateParams, $meteor) {
 
-        $scope.recipe = $meteor.object(Recipes, $stateParams.recipeId).subscribe('recipes');
-
+        $scope.recipe = $meteor.object(Recipes, $stateParams.recipeId);
         $scope.users = $meteor.collection(Meteor.users, false).subscribe('users');
+        $scope.$meteorSubscribe('recipes');
 
         $scope.save = function() {
             $scope.recipe.save()

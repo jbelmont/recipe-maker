@@ -1,1 +1,1 @@
-angular.module('recipes', ['angular-meteor', 'ui.router']);
+angular.module('recipes', ['angular-meteor', 'ui.router', 'angularUtils.directives.dirPagination']);
