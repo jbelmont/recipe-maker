@@ -1,4 +1,4 @@
-angular.module('recipe').filter('uninvited', function () {
+angular.module('recipes').filter('uninvited', function () {
    return function (users, recipe) {
        if (!recipe) {
            return false;

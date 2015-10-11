@@ -9,8 +9,9 @@ Here you will see and change the details of the recipe:
 
 <ul>
     Users to invite:
-    <li ng-repeat="user in users | uninvited:party">
+    <li ng-repeat="user in users | uninvited:recipe">
         <div>{{ user | displayName }}</div>
+        <button ng-click="invite(user)">Invite</button>
     </li>
 </ul>
 

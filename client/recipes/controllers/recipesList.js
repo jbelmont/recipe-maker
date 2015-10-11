@@ -4,8 +4,7 @@ angular.module('recipes').controller('RecipesListCtrl', ['$scope', '$meteor', '$
     $scope.perPage = 3;
     $scope.sort = { name: 1 };
     $scope.orderProperty = '1';
-
-    $scope.$meteorSubscribe('users');
+    $scope.users = $meteor.collection(Meteor.users, false).subscribe('users');
 
     // Pass options for Server-Side Sorting in the options parameter in
     $scope.recipes = $meteor.collection(Recipes);
@@ -44,6 +43,25 @@ angular.module('recipes').controller('RecipesListCtrl', ['$scope', '$meteor', '$
             $scope.sort = { name: parseInt($scope.orderProperty) };
         }
     });
+
+    $scope.rsvp = function (recipeId, rsvp) {
+        $meteor.call('rsvp', recipeId, rsvp)
+            .then(
+                function(data) {
+                    console.log('success responding', data);
+                },
+                function(err) {
+                    console.log('failed', err);
+                }
+            )
+    };
+
+    $scope.outstandingInvitations = function (recipe) {
+        return _.filter($scope.users, function (user) {
+           return (_.contains(recipe.invited, user._id) &&
+           !_.findWhere(recipe.rsvps, {user: user._id}));
+        });
+    };
 
     $scope.getUserById = function(userId) {
         return Meteor.users.findOne(userId);
