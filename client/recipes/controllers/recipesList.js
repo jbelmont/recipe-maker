@@ -1,9 +1,11 @@
-angular.module('recipes').controller('RecipesListCtrl', ['$scope', '$meteor', function ($scope, $meteor) {
+angular.module('recipes').controller('RecipesListCtrl', ['$scope', '$meteor', '$rootScope', function ($scope, $meteor, $rootScope) {
 
     $scope.page = 1;
     $scope.perPage = 3;
     $scope.sort = { name: 1 };
     $scope.orderProperty = '1';
+
+    $scope.$meteorSubscribe('users');
 
     // Pass options for Server-Side Sorting in the options parameter in
     $scope.recipes = $meteor.collection(Recipes);
@@ -41,5 +43,28 @@ angular.module('recipes').controller('RecipesListCtrl', ['$scope', '$meteor', fu
         if ($scope.orderProperty) {
             $scope.sort = { name: parseInt($scope.orderProperty) };
         }
-    })
+    });
+
+    $scope.getUserById = function(userId) {
+        return Meteor.users.findOne(userId);
+    };
+
+    $scope.creator = function(recipe) {
+        if (!recipe) {
+            return false;
+        }
+        var owner = $scope.getUserById(recipe.owner);
+        if (!owner) {
+            return 'nobody';
+        }
+
+        if ($rootScope.currentUser) {
+            if ($rootScope.currentUser._id) {
+                if (owner._id === $rootScope.currentUser._id) {
+                    return 'me';
+                }
+            }
+            return owner;
+        }
+    }
 }]);

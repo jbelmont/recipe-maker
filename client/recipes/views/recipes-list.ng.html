@@ -22,6 +22,7 @@
         <a href="/recipes/{{recipe._id}}">{{recipe.name}}</a>
         <p>{{recipe.description}}</p>
         <button ng-click="remove(recipe)">X</button>
+        <p><small>Posted by {{ creator(party) | displayName }}</small></p>
     </li>
 </ul>
 <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
