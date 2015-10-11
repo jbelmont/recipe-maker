@@ -1,19 +1,32 @@
 Here you will see and change the details of the recipe:
 
-<input ng-model="recipe.name">
-<input ng-model="recipe.description">
+<input ng-model="recipe.name" ng-disabled="recipe.owner != $root.currentUser._id">
+<input ng-model="recipe.description" ng-disabled="recipe.owner != $root.currentUser._id">
 
 <label>Is public</label>
-<input type="checkbox" ng-model="recipe.public" />
+<input type="checkbox" ng-model="recipe.public" ng-disabled="recipe.owner != $root.currentUser._id" />
 
 
-<ul>
+<ul ng-show="canInvite()">
     Users to invite:
     <li ng-repeat="user in users | uninvited:recipe">
         <div>{{ user | displayName }}</div>
         <button ng-click="invite(user)">Invite</button>
     </li>
+
+    <li ng-if="(users | uninvited:recipe).length <= 0">
+        Everyone is already invited.
+    </li>
 </ul>
+
+<div class="recipe-details-maps">
+    <div class="angular-google-map-container">
+        <ui-gmap-google-map center="recipe.location || map.center" events="map.events" zoom="map.zoom">
+            <ui-gmap-marker coords="recipe.location" options="map.marker.options"
+                    events="map.marker.events" idkey="recipe._id"></ui-gmap-marker>
+        </ui-gmap-google-map>
+    </div>
+</div>
 
 <button ng-click="save()">Save</button>
 <button ng-click="reset()">Reset form</button>

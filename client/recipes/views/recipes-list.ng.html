@@ -1,4 +1,4 @@
-<form>
+<form ng-show="$root.currentUser">
     <label>Name</label>
     <input ng-model="newRecipe.name">
     <label>Description</label>
@@ -8,25 +8,39 @@
     <button ng-click="newRecipe.owner=$root.currentUser._id; recipes.push(newRecipe)">Add Bread</button>
     <button ng-click="removeAll()">Remove All Recipes</button>
 </form>
+<div ng-hide="$root.currentUser || $root.loggingIn">
+    Log in to create a recipe!
+</div>
 <ul>
     <h1>Recipes:</h1>
     <div>
-        <label for="searchLabel">Search Bread Recipes</label>
+        <label>Search Bread Recipes</label>
         <input type="search" ng-model="search" placeholder="Search">
     </div>
     <select ng-model="orderProperty">
         <option value="1">Ascending</option>
         <option value="-1">Descending</option>
     </select>
+    <div class="angular-google-map-container">
+        <ui-gmap-google-map center="recipe.location || map.center" zoom="map.zoom">
+            <ui-gmap-markers models="recipes" coords="'location'" click="onClicked()"
+                    fit="true" idkey="'_id'" doRebuildAll="true"></ui-gmap-markers>
+        </ui-gmap-google-map>
+    </div>
+
     <li dir-paginate="recipe in recipes | itemsPerPage: perPage" total-items="recipesCount.count">
         <a href="/recipes/{{recipe._id}}">{{recipe.name}}</a>
         <p>{{recipe.description}}</p>
-        <button ng-click="remove(recipe)">X</button>
+        <button ng-click="remove(recipe)" ng-show="$root.currentUser && $root.currentUser._id == recipe.owner">X</button>
 
-        <div>
+        <div ng-show="$root.currentUser">
             <input type="button" value="I'm going!" ng-click="rsvp(recipe._id, 'yes')">
             <input type="button" value="Maybe" ng-click="rsvp(recipe._id, 'maybe')">
             <input type="button" value="No" ng-click="rsvp(recipe._id, 'no')">
+        </div>
+
+        <div ng-hide="$root.currentUser">
+            <i>Sign in to RSVP for this party.</i>
         </div>
 
         <div>
@@ -45,12 +59,16 @@
             </div>
         </div>
 
-        <ul>
+        <ul ng-if="!recipe.public">
             Users who did not respond:
             <li ng-repeat="invitedUser in outstandingInvitations(recipe)">
                 {{ invitedUser | displayName }}
             </li>
         </ul>
+
+        <div ng-if="recipe.public">
+            Everyone is invited
+        </div>
 
         <p><small>Posted by {{ creator(party) | displayName }}</small></p>
     </li>

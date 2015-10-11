@@ -16,6 +16,20 @@ angular.module('recipes').controller('RecipesListCtrl', ['$scope', '$meteor', '$
             sort: $scope.sort
         }, $scope.getReactively('search')).then(function () {
             $scope.recipesCount = $meteor.object(Counts, 'numberOfRecipes', false);
+
+            $scope.recipes.forEach(function(recipe) {
+                recipe.onClicked = function () {
+                    $state.go('recipeDetails', {recipeId : recipe._id });
+                };
+            });
+
+            $scope.map = {
+                center : {
+                    latitude : 45,
+                    longitude : -73
+                },
+                zoom : 8
+            };
         });
     });
 

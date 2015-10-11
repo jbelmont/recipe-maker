@@ -1,1 +1,3 @@
-angular.module('recipes', ['angular-meteor', 'ui.router', 'angularUtils.directives.dirPagination']);
+angular.module('recipes',
+    ['angular-meteor', 'ui.router', 'angularUtils.directives.dirPagination', 'uiGmapgoogle-maps']
+);
