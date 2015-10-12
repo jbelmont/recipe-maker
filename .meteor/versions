@@ -4,7 +4,6 @@ accounts-ui@1.1.6
 accounts-ui-unstyled@1.1.8
 angular@1.0.1
 angular:angular@1.4.7
-angularui:angular-google-maps@2.2.1
 angularui:angular-ui-router@0.2.15
 angularutils:pagination@0.9.0
 autoupdate@1.2.3
@@ -34,6 +33,7 @@ ejson@1.0.7
 email@1.0.7
 es5-shim@4.1.13
 fastclick@1.0.7
+fourseven:scss@3.3.3_3
 geojson-utils@1.0.4
 hot-code-push@1.0.0
 html-tools@1.0.5
@@ -55,7 +55,6 @@ mobile-experience@1.0.1
 mobile-status-bar@1.0.6
 mongo@1.1.2
 mongo-id@1.0.1
-nmccready:angular-simple-logger@0.0.4
 npm-bcrypt@0.7.8_2
 npm-mongo@1.4.39_1
 observe-sequence@1.0.7
@@ -75,14 +74,17 @@ spacebars@1.0.7
 spacebars-compiler@1.0.7
 srp@1.0.4
 standard-minifiers@1.0.1
-stevezhu:lodash@1.0.2
 templating@1.1.4
 templating-tools@1.0.0
 tmeasday:publish-counts@0.7.2
 tracker@1.0.9
+twbs:bootstrap@3.3.5
 ui@1.0.8
 underscore@1.0.4
 urigo:angular-blaze-template@0.0.1
 url@1.0.5
 webapp@1.2.2
 webapp-hashing@1.0.5
+wolves:bitters@3.0.0
+wolves:bourbon@3.0.0
+wolves:neat@3.0.0

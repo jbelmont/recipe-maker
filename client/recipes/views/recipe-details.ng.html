@@ -19,15 +19,6 @@ Here you will see and change the details of the recipe:
     </li>
 </ul>
 
-<div class="recipe-details-maps">
-    <div class="angular-google-map-container">
-        <ui-gmap-google-map center="recipe.location || map.center" events="map.events" zoom="map.zoom">
-            <ui-gmap-marker coords="recipe.location" options="map.marker.options"
-                    events="map.marker.events" idkey="recipe._id"></ui-gmap-marker>
-        </ui-gmap-google-map>
-    </div>
-</div>
-
 <button ng-click="save()">Save</button>
 <button ng-click="reset()">Reset form</button>
 <button ui-sref="recipes">Cancel</button>
