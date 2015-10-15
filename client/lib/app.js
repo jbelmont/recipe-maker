@@ -1,5 +1,5 @@
 angular.module('recipes',
-    ['angular-meteor', 'ui.router', 'angularUtils.directives.dirPagination']
+    ['angular-meteor', 'ui.router', 'angularUtils.directives.dirPagination', 'ui.bootstrap']
 );
 
 function onReady() {
