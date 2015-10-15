@@ -1,0 +1,21 @@
+.ma-add-recipe-container {
+  padding : 20px;
+
+  > form {
+    > h2 {
+      font-size : 15px;
+      margin-bottom : 20px;
+    }
+
+    button {
+      background : $color3;
+      color : $color5;
+    }
+  }
+
+  .alert.alert-info {
+    background : $color4;
+    color : $color5;
+    margin-bottom : 0;
+  }
+}

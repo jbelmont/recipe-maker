@@ -1,70 +1,109 @@
-<form ng-show="$root.currentUser">
-    <label>Name</label>
-    <input ng-model="newRecipe.name">
-    <label>Description</label>
-    <input ng-model="newRecipe.description">
-    <label>Public</label>
-    <input type="checkbox" ng-model="newRecipe.public" />
-    <button ng-click="newRecipe.owner=$root.currentUser._id; recipes.push(newRecipe)">Add Bread</button>
-    <button ng-click="removeAll()">Remove All Recipes</button>
-</form>
-<div ng-hide="$root.currentUser || $root.loggingIn">
-    Log in to create a recipe!
-</div>
-<ul>
-    <h1>Recipes:</h1>
-    <div>
-        <label>Search Bread Recipes</label>
-        <input type="search" ng-model="search" placeholder="Search">
-    </div>
-    <select ng-model="orderProperty">
-        <option value="1">Ascending</option>
-        <option value="-1">Descending</option>
-    </select>
+<div class="row h100">
+    <div class="col-md-6 ma-recipes-col">
+        <div class="row">
+            <div class="col-xs-8">
+                <form class="form-inline search-form">
+                    <div class="form-group">
+                        <label class="sr-only" for="search">Search</label>
 
-    <li dir-paginate="recipe in recipes | itemsPerPage: perPage" total-items="recipesCount.count">
-        <a href="/recipes/{{recipe._id}}">{{recipe.name}}</a>
-        <p>{{recipe.description}}</p>
-        <button ng-click="remove(recipe)" ng-show="$root.currentUser && $root.currentUser._id == recipe.owner">X</button>
-
-        <div ng-show="$root.currentUser">
-            <input type="button" value="I'm going!" ng-click="rsvp(recipe._id, 'yes')">
-            <input type="button" value="Maybe" ng-click="rsvp(recipe._id, 'maybe')">
-            <input type="button" value="No" ng-click="rsvp(recipe._id, 'no')">
-        </div>
-
-        <div ng-hide="$root.currentUser">
-            <i>Sign in to RSVP for this party.</i>
-        </div>
-
-        <div>
-            Who is coming:
-            Yes - {{ (recipe.rsvps | filter:{rsvp : 'yes'}).length }}
-            Maybe - {{ (recipe.rsvps | filter: {rsvp:'maybe'}).length }}
-            No - {{ (recipe.rsvps | filter: {rsvp:'no'}).length }}
-            <div ng-repeat="rsvp in recipe.rsvps | filter : {rsvp:'yes'}">
-                {{ getUserById(rsvp.user) | displayName }} - {{ rsvp.rsvp }}
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                            <input type="text" ng-model="search" placeholder="Search" id="search" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="sort-order">Sort Order</label>
+                        <select ng-model="orderProperty" class="form-control">
+                            <option value="1">Ascending</option>
+                            <option value="-1">Descending</option>
+                        </select>
+                    </div>
+                </form>
             </div>
-            <div ng-repeat="rsvp in recipe.rsvps | filter : {rsvp:'maybe'}">
-                {{ getUserById(rsvp.user) | displayName }} - {{ rsvp.rsvp }}
-            </div>
-            <div ng-repeat="rsvp in recipe.rsvps | filter : {rsvp:'no'}">
-                {{ getUserById(rsvp.user) | displayName }} - {{ rsvp.rsvp }}
+            <div class="col-xs-4 ma-add-button-container">
+                <button class="btn" ng-click="openAddNewRecipeModal()"><i class="fa fa-plus"></i></button>
             </div>
         </div>
+        <ul class="list-group">
+            <li dir-paginate="recipe in recipes | itemsPerPage: perPage" total-items="recipesCount.count"
+                class="list-group-item ma-recipe-item">
 
-        <ul ng-if="!recipe.public">
-            Users who did not respond:
-            <li ng-repeat="invitedUser in outstandingInvitations(recipe)">
-                {{ invitedUser | displayName }}
+                <i ng-click="remove(recipe)" class="ma-remove fa fa-times"
+                   ng-show="$root.currentUser && $root.currentUser._id == recipe.owner"></i>
+
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <h2 class="ma-recipe-name">
+                            <a href="/recipes/{{recipe._id}}">{{recipe.name}}</a>
+                        </h2>
+                        <p class="ma-recipe-description">{{recipe.description}}</p>
+                    </div>
+                </div>
+
+                <div class="row ma-recipe-item-bottom">
+                    <div class="col-sm-8 ma-posted-by-col">
+                        <span class="ma-posted-by">Posted by {{ creator(recipe) | displayName }}  </span>
+
+                        <span ng-if="recipe.public" class="ma-recipe-invited"><i class="fa fa-male"></i> Everyone is invited</span>
+
+                        <span ng-if="!recipe.public" class="ma-everyone-invited">
+                             <i class="fa fa-user-secret"></i>  This is a private event
+                        </span>
+
+                        <div ng-show="$root.currentUser" class="ma-rsvp-buttons">
+                            <input type="button" value="I'm going!" ng-click="rsvp(recipe._id, 'yes')" class="btn"
+                                   ng-class="{'btn-primary' : isRSVP('yes', recipe)}">
+                            <input type="button" value="Maybe" ng-click="rsvp(recipe._id, 'maybe')" class="btn"
+                                   ng-class="{'btn-primary' : isRSVP('maybe', recipe)}">
+                            <input type="button" value="No" ng-click="rsvp(recipe._id, 'no')" class="btn"
+                                   ng-class="{'btn-primary' : isRSVP('no', recipe)}">
+                        </div>
+                        <div ng-hide="$root.currentUser">
+                            <i>Sign in to RSVP for this recipe.</i>
+                        </div>
+
+
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="ma-rsvp-sum">
+                            <div class="ma-rsvp-amount">
+                                <div class="ma-amount">
+                                    {{ (recipe.rsvps | filter:{rsvp:'yes'}).length || "0"}}
+                                </div>
+                                <div class="ma-rsvp-title">
+                                    YES
+                                </div>
+                            </div>
+                            <div class="ma-rsvp-amount">
+                                <div class="ma-amount">
+                                    {{ (recipe.rsvps | filter:{rsvp:'maybe'}).length || "0"}}
+                                </div>
+                                <div class="ma-rsvp-title">
+                                    MAYBE
+                                </div>
+                            </div>
+                            <div class="ma-rsvp-amount">
+                                <div class="ma-amount">
+                                    {{ (recipe.rsvps | filter:{rsvp:'no'}).length || "0"}}
+                                </div>
+                                <div class="ma-rsvp-title">
+                                    NO
+                                </div>
+                            </div>
+                        </div>
+
+                        <ul ng-if="!recipe.public">
+                            <li ng-repeat="invitedUser in outstandingInvitations(recipe)">
+                                {{ invitedUser | displayName }}
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
             </li>
         </ul>
-
-        <div ng-if="recipe.public">
-            Everyone is invited
-        </div>
-
-        <p><small>Posted by {{ creator(party) | displayName }}</small></p>
-    </li>
-</ul>
-<dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+        <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+    </div>
+</div>

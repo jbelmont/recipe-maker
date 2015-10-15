@@ -1,8 +1,36 @@
+$color1 : #2F2933;
+$color2 : #01A2A6;
+$color3 : #29D9C2;
+$color4 : $BDF271;
+$color5 : #2F2933;
+$color6 : #2F2933;
+$color7 : #FF6F69;
+
+html, body {
+  height : 100%;
+}
+
 body {
   background-color: rgba(0,0,0,.2);
   padding-top: 70px;
+  font-family: 'Muli', sans-serif;
+}
 
-  .navbar {
-    background-color: #ffffff;
+.h100 {
+  height : 100%;
+}
+
+.w100 {
+  width : 100%;
+}
+
+.ma-main-container {
+  @media(min-width: 400px) {
+    padding-right : 0;
   }
 }
+
+@import "../recipes/styles/recipes.import.scss";
+@import "../recipes/styles/new.recipe.import.scss";
+@import "../recipes/styles/recipe.details.import.scss";
+@import "../recipes/styles/navbar.import.scss";
