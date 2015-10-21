@@ -1,6 +1,8 @@
-@import 'partials/_colors';
+@import '../../styles/partials/_colors';
 
 .ma-add-button-container {
+  text-align: center;
+  width: 110px;
   button.btn {
     background: $color3;
     float: right;

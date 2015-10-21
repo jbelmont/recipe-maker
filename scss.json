@@ -1,4 +1,7 @@
 {
   "useIndex": true,
-  "indexFilePath": "client/styles"
+  "indexFilePath": "client/styles",
+  "includePaths": [
+    "client/recipes/styles"
+  ]
 }

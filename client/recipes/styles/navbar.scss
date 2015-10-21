@@ -1,4 +1,4 @@
-@import 'partials/_colors';
+@import '../../styles/partials/_colors';
 
 // Override Bootstrap navbar
 .navbar {
@@ -13,9 +13,7 @@
   }
 
   .navbar-right-container {
-    position : absolute;
-    top : 17px;
-    right : 17px;
+    float: right;
   }
 }
 
