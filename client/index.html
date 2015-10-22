@@ -9,7 +9,10 @@
                 <a class="navbar-brand" href="/recipes">Recipes</a>
             </div>
             <div class="navbar-right-container">
-                <blaze-template name="loginButtons"></blaze-template>
+                <button ng-class="btn" ng-href="/login" ng-hide="$root.currentUser">Login</button>
+                <button ng-class="btn" ng-href="/register" ng-hide="$root.currentUser">Sign up</button>
+                <div ng-show="$root.currentUser" ng-bind="$root.currentUser"></div>
+                <button ng-class="btn" ng-href="/logout" ng-show="$root.currentUser">Logout</button>
             </div>
         </div>
     </nav>

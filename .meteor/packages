@@ -19,7 +19,6 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 angular
 angularui:angular-ui-router
 accounts-password
-accounts-ui
 urigo:angular-blaze-template
 tmeasday:publish-counts
 check
