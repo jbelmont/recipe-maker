@@ -6,11 +6,11 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/recipes">Recipes</a>
+                <a class="navbar-brand" href="/recipes"><span>Recipes</span></a>
             </div>
-            <div class="navbar-right-container">
-                <button ng-class="btn" ng-href="/login" ng-hide="$root.currentUser">Login</button>
-                <button ng-class="btn" ng-href="/register" ng-hide="$root.currentUser">Sign up</button>
+            <div class="navbar-right navbar-text">
+                <a ng-class="btn" ng-href="/login" ng-hide="$root.currentUser"><span>Login</span></a>
+                <a ng-class="btn" ng-href="/register" ng-hide="$root.currentUser"><span>Sign up</span></a>
                 <div ng-show="$root.currentUser" ng-bind="$root.currentUser"></div>
                 <button ng-class="btn" ng-href="/logout" ng-show="$root.currentUser">Logout</button>
             </div>
