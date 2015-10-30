@@ -1,4 +1,5 @@
-@import '../../styles/partials/_colors';
+@import "../../styles/partials/_colors";
+@import "{wolves:bourbon}/bourbon";
 
 // Override Bootstrap navbar
 .navbar {
@@ -13,12 +14,29 @@
   a {
     text-decoration : none !important;
     color: $backgroundColor2 !important;
+
+    span {
+      font-size: 20px;
+      padding-right: 25px;
+      padding-left: 25px;
+    }
   }
 
   // Add button customizations
   .navbar-right.navbar-text {
+    margin: 10px 0px;
+
     > a.span {
       color: $backgroundColor2;
+    }
+
+    a.oval-profile {
+      width: 50px;
+      height: 50px;
+      background: red;
+      border-radius: 50%;
+      padding-left: 0px;
+      padding-right: 0px;
     }
   }
 }
