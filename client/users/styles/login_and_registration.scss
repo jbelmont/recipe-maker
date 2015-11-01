@@ -1,6 +1,13 @@
-@import "{}/client/styles/partials/_colors";
-@import "{wolves:bourbon}/bourbon";
-
-.login-form-area, .register-form-area {
+.login-form-area, .register-form-area, .reset-form-area {
   margin: 10px;
+}
+
+.login-link-area, .register-link-area, .reset-link-area {
+  text-align: center;
+}
+
+.ma-main-container {
+  .jumbotron {
+    text-align: center;
+  }
 }
