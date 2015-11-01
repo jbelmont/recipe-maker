@@ -44,48 +44,6 @@ angular.module('recipes').controller('RecipesListCtrl', ['$scope', '$meteor', '$
             }
         });
 
-        $scope.rsvp = function (recipeId, rsvp) {
-            $meteor.call('rsvp', recipeId, rsvp)
-                .then(
-                    function(data) {
-                        console.log('success responding', data);
-                    },
-                    function(err) {
-                        console.log('failed', err);
-                    }
-                )
-        };
-
-        $scope.outstandingInvitations = function (recipe) {
-            return _.filter($scope.users, function (user) {
-               return (_.contains(recipe.invited, user._id) &&
-               !_.findWhere(recipe.rsvps, {user: user._id}));
-            });
-        };
-
-        $scope.getUserById = function(userId) {
-            return Meteor.users.findOne(userId);
-        };
-
-        $scope.creator = function(recipe) {
-            if (!recipe) {
-                return false;
-            }
-            var owner = $scope.getUserById(recipe.owner);
-            if (!owner) {
-                return 'nobody';
-            }
-
-            if ($rootScope.currentUser) {
-                if ($rootScope.currentUser._id) {
-                    if (owner._id === $rootScope.currentUser._id) {
-                        return 'me';
-                    }
-                }
-                return owner;
-            }
-        };
-
         $scope.openAddNewRecipeModal = function () {
             var modalInstance = $modal.open({
                 animation : true,
@@ -98,22 +56,11 @@ angular.module('recipes').controller('RecipesListCtrl', ['$scope', '$meteor', '$
                 }
             });
 
-            modalInstance.result.then(function () {
-            }, function () {
+            modalInstance.result
+                .then(function () {
 
-            });
-        };
+                }, function () {
 
-        $scope.isRSVP = function (rsvp, recipe) {
-            if (!$rootScope.currentUser._id) {
-                return false;
-            }
-            var rsvpIndex = recipe.myRsvpIndex;
-            rsvpIndex = rsvpIndex || _.indexOf(_.pluck(recipe.rsvps, 'user'), $rootScope.currentUser._id);
-
-            if (rsvpIndex !== -1) {
-                recipe.myRsvpIndex = rsvpIndex;
-                return recipe.rsvps[rsvpIndex].rsvp === rsvp;
-            }
+                });
         };
 }]);

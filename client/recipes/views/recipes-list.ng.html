@@ -40,68 +40,6 @@
                         <p class="ma-recipe-description">{{recipe.description}}</p>
                     </div>
                 </div>
-
-                <div class="row ma-recipe-item-bottom">
-                    <div class="col-sm-8 ma-posted-by-col">
-                        <span class="ma-posted-by">Posted by {{ creator(recipe) | displayName }}  </span>
-
-                        <span ng-if="recipe.public" class="ma-recipe-invited"><i class="fa fa-male"></i> Everyone is invited</span>
-
-                        <span ng-if="!recipe.public" class="ma-everyone-invited">
-                             <i class="fa fa-user-secret"></i>  This is a private event
-                        </span>
-
-                        <div ng-show="$root.currentUser" class="ma-rsvp-buttons">
-                            <input type="button" value="I'm going!" ng-click="rsvp(recipe._id, 'yes')" class="btn"
-                                   ng-class="{'btn-primary' : isRSVP('yes', recipe)}">
-                            <input type="button" value="Maybe" ng-click="rsvp(recipe._id, 'maybe')" class="btn"
-                                   ng-class="{'btn-primary' : isRSVP('maybe', recipe)}">
-                            <input type="button" value="No" ng-click="rsvp(recipe._id, 'no')" class="btn"
-                                   ng-class="{'btn-primary' : isRSVP('no', recipe)}">
-                        </div>
-                        <div ng-hide="$root.currentUser">
-                            <i>Sign in to RSVP for this recipe.</i>
-                        </div>
-
-
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="ma-rsvp-sum">
-                            <div class="ma-rsvp-amount">
-                                <div class="ma-amount">
-                                    {{ (recipe.rsvps | filter:{rsvp:'yes'}).length || "0"}}
-                                </div>
-                                <div class="ma-rsvp-title">
-                                    YES
-                                </div>
-                            </div>
-                            <div class="ma-rsvp-amount">
-                                <div class="ma-amount">
-                                    {{ (recipe.rsvps | filter:{rsvp:'maybe'}).length || "0"}}
-                                </div>
-                                <div class="ma-rsvp-title">
-                                    MAYBE
-                                </div>
-                            </div>
-                            <div class="ma-rsvp-amount">
-                                <div class="ma-amount">
-                                    {{ (recipe.rsvps | filter:{rsvp:'no'}).length || "0"}}
-                                </div>
-                                <div class="ma-rsvp-title">
-                                    NO
-                                </div>
-                            </div>
-                        </div>
-
-                        <ul ng-if="!recipe.public">
-                            <li ng-repeat="invitedUser in outstandingInvitations(recipe)">
-                                {{ invitedUser | displayName }}
-                            </li>
-                        </ul>
-
-                    </div>
-                </div>
-
             </li>
         </ul>
         <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>

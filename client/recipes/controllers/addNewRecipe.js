@@ -7,4 +7,5 @@ angular.module("recipes").controller("AddNewRecipeCtrl", ['$scope', '$meteor', '
             $scope.newRecipe = '';
             $modalInstance.close();
         }
-    }]);
+    }
+]);
