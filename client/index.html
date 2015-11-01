@@ -11,8 +11,9 @@
             <div class="navbar-right navbar-text">
                 <a ng-class="btn" ng-href="/login" ng-hide="$root.currentUser"><span>Login</span></a>
                 <a ng-class="btn" ng-href="/register" ng-hide="$root.currentUser"><span>Sign up</span></a>
-                <div ng-show="$root.currentUser" ng-bind="$root.currentUser"></div>
-                <a ng-class="btn" class="oval-profile" ng-href="/logout" ng-show="$root.currentUser"><span>Logout</span></a>
+                <a ng-class="btn" class="oval-profile" ng-href="/logout" ng-show="$root.currentUser">
+                    <span>Logout</span>
+                </a>
             </div>
         </div>
     </nav>

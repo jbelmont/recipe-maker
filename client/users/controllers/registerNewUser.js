@@ -12,7 +12,7 @@ angular.module("recipes").controller("RegisterCtrl", ['$meteor', '$state',
         vm.register = function () {
             $meteor.createUser(vm.credentials).then(
                 function () {
-                    $state.go('parties');
+                    $state.go('recipes');
                 },
                 function (err) {
                     vm.error = 'Registration error - ' + err;
