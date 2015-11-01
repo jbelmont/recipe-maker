@@ -1,7 +1,26 @@
-<div id="registerNewUser">
-    <form>
-        <input type="email" name="registerEmail">
-        <input type="password" name="registerPassword">
-        <button class="create-account" ng-click="rc.register()">Create Account</button>
-    </form>
+<div class="row" id="registerNewUser">
+    <div class="col-md-8">
+        <h1 class="jumbotron">Build a Recipe Maker with Angular-Meteor</h1>
+    </div>
+    <div class="col-md-4">
+        <form class="register-form-area">
+            <div class="form-group">
+                <label for="registerEmail">Email address</label>
+                <div class="input-group">
+                    <span class="input-group-addon glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                    <input type="email" id="registerEmail" class="form-control" name="registerEmail"
+                           aria-describedby="sizing-addon2" ng-model="lc.credentials.email" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="registerPassword">Password</label>
+                <div class="input-group">
+                    <span class="input-group-addon glyphicon glyphicon-lock" aria-hidden="true"></span>
+                    <input type="password" id="registerPassword" class="form-control" name="registerPassword"
+                           aria-describedby="sizing-addon2" ng-model="lc.credentials.password" placeholder="Password">
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block login-button" ng-click="rc.register()">Register</button>
+        </form>
+    </div>
 </div>

@@ -6,15 +6,21 @@
         <form class="login-form-area">
             <div class="form-group">
                 <label for="loginEmail">Email address</label>
-                <input type="email" id="loginEmail" class="form-control" name="loginEmail"
-                       ng-model="lc.credentials.email" placeholder="Email">
+                <div class="input-group">
+                    <span class="input-group-addon glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                    <input type="email" id="loginEmail" class="form-control" name="loginEmail"
+                           aria-describedby="sizing-addon2" ng-model="lc.credentials.email" placeholder="Email">
+                </div>
             </div>
             <div class="form-group">
                 <label for="loginPassword">Password</label>
-                <input type="password" id="loginPassword" class="form-control" name="loginPassword"
-                       ng-model="lc.credentials.password" placeholder="Password">
+                <div class="input-group">
+                    <span class="input-group-addon glyphicon glyphicon-lock" aria-hidden="true"></span>
+                    <input type="password" id="loginPassword" class="form-control" name="loginPassword"
+                           aria-describedby="sizing-addon2" ng-model="lc.credentials.password" placeholder="Password">
+                </div>
             </div>
-            <button class="class=btn btn-default login-button" ng-click="lc.login()">Login</button>
+            <button class="btn btn-primary btn-block login-button" ng-click="lc.login()">Login</button>
         </form>
     </div>
 </div>
