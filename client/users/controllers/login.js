@@ -10,14 +10,15 @@ angular.module("recipes").controller("LoginCtrl", ['$meteor', '$state',
         vm.error = '';
 
         vm.login = function () {
-            $meteor.loginWithPassword(vm.credentials.email, vm.credentials.password).then(
-                function () {
-                    $state.go('recipes');
-                },
-                function (err) {
-                    vm.error = 'Login error - ' + err;
-                }
-            );
+            $meteor.loginWithPassword(vm.credentials.email, vm.credentials.password)
+                .then(
+                    function () {
+                        $state.go('recipes');
+                    },
+                    function (err) {
+                        vm.error = 'Login error - ' + err;
+                    }
+                );
         };
     }
 ]);

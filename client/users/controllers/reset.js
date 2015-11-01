@@ -9,14 +9,15 @@ angular.module("recipes").controller("ResetCtrl", ['$meteor', '$state',
         vm.error = '';
 
         vm.reset = function () {
-            $meteor.forgotPassword(vm.credentials).then(
-                function () {
-                    $state.go('recipes');
-                },
-                function (err) {
-                    vm.error = 'Error sending forgot password email - ' + err;
-                }
-            );
+            $meteor.forgotPassword(vm.credentials)
+                .then(
+                    function () {
+                        $state.go('recipes');
+                    },
+                    function (err) {
+                        vm.error = 'Error sending forgot password email - ' + err;
+                    }
+                );
         };
     }
 ]);
