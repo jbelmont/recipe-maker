@@ -1,24 +1,28 @@
-<div class="container-fluid ma-add-new-party-container">
+<div class="container-fluid ma-add-recipe-container">
     <div class="alert alert-info" ng-hide="$root.currentUser || $root.loggingIn">
         Please log in to create a recipe!
     </div>
 
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span ng-click="closeModal()" aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title title-style">New Recipe</h4>
+    </div>
     <form ng-show="$root.currentUser || $root.loggingIn">
-        <h2>Create a new recipe</h2>
-
         <div class="form-group">
-            <label for="nameInput">Name</label>
-            <input ng-model="newRecipe.name" id="nameInput" type="text" class="form-control">
+            <label for="nameInput">Recipe Title</label>
+            <input ng-model="newRecipe.name" id="nameInput" type="text" class="form-control" placeholder="Recipe Title">
         </div>
         <div class="form-group">
-            <label for="description">Description</label>
-            <input ng-model="newRecipe.description" id="description" type="text" class="form-control">
+            <label for="description">Recipe Description</label>
+            <textarea ng-model="newRecipe.description" id="description" rows="3" class="form-control" placeholder="Recipe Description"></textarea>
         </div>
         <div class="form-group">
-            <label for="public">
-                <input type="checkbox" ng-model="newRecipe.public" id="public"> Public
-            </label>
+            <label for="Ingredients">Recipe Ingredients</label>
+            <textarea ng-model="newRecipe.ingredients" id="Ingredients" rows="3" class="form-control" placeholder="Ingredients"></textarea>
         </div>
-        <button ng-click="addNewRecipe()" class="btn">Add</button>
+        <button ng-click="addNewRecipe()" class="btn btn-primary btn-large ">Add</button>
+        <button ng-click="closeModal()" class="btn btn-primary btn-large pull-left">Cancel</button>
     </form>
 </div>

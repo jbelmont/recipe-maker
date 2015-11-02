@@ -6,6 +6,10 @@ angular.module("recipes").controller("AddNewRecipeCtrl", ['$scope', '$meteor', '
             recipes.push($scope.newRecipe);
             $scope.newRecipe = '';
             $modalInstance.close();
-        }
+        };
+
+        $scope.closeModal = function () {
+            $modalInstance.close();
+        };
     }
 ]);
