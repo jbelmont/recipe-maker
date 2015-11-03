@@ -17,24 +17,5 @@ angular.module("recipes").controller("RecipeDetailsCtrl", ['$scope', '$statePara
         $scope.reset = function() {
             $scope.recipe.reset();
         };
-
-        $scope.canInvite = function () {
-            if (!$scope.recipe) {
-                return false;
-            }
-            return !$scope.recipe.public && $scope.recipe.owner === Meteor.userId();
-        };
-
-        $scope.invite = function (user) {
-            $meteor.call('invite', $scope.party._id, user._id)
-                .then(
-                    function(data) {
-                        console.log('success inviting', data);
-                    },
-                    function(err) {
-                        console.log('failed', err);
-                    }
-                );
-        }
     }
 ]);
