@@ -2,16 +2,19 @@ Meteor.startup(function () {
     if (Recipes.find().count() === 0) {
         var recipes = [
             {
-                'name': 'Bread 1',
-                'description': 'This is bread 1.'
+                'title': 'Bread 1',
+                'ingredients': 'This is bread 1.',
+                'directions': 'Bake step 1.'
             },
             {
-                'name': 'Bread 2',
-                'description': 'This is bread 2.'
+                'title': 'Bread 2',
+                'ingredients': 'This is bread 2.',
+                'directions': 'Bake step 2.'
             },
             {
-                'name': 'Bread 3',
-                'description': 'This is bread 3.'
+                'title': 'Bread 3',
+                'ingredients': 'This is bread 3.',
+                'directions': 'Bake step 3.'
             }
         ];
         recipes.forEach(function(recipe) {

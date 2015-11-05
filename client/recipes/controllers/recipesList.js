@@ -45,7 +45,7 @@ angular.module('recipes').controller('RecipesListCtrl', ['$scope', '$meteor', '$
         });
 
         $scope.openAddNewRecipeModal = function () {
-            var modalInstance = $modal.open({
+            $modal.open({
                 animation : true,
                 templateUrl : 'client/recipes/views/add-new-recipe-modal.ng.html',
                 controller : 'AddNewRecipeCtrl',
@@ -55,12 +55,5 @@ angular.module('recipes').controller('RecipesListCtrl', ['$scope', '$meteor', '$
                     }
                 }
             });
-
-            modalInstance.result
-                .then(function () {
-
-                }, function () {
-
-                });
         };
 }]);

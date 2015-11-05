@@ -22,7 +22,8 @@
 }
 
 .ma-recipe-item {
-  .ma-recipe-name {
+
+  .ma-recipe-title {
     margin-bottom: 20px;
     a {
       color: $color6;
@@ -31,7 +32,14 @@
     }
   }
 
-  .ma-recipe-description {
+  .ma-recipe-ingredients {
+    color: $color6;
+    font-weight: 300;
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  .ma-recipe-directions {
     color: $color6;
     font-weight: 300;
     padding-left: 18px;

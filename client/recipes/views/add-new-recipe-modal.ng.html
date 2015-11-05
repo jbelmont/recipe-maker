@@ -12,15 +12,15 @@
     <form ng-show="$root.currentUser || $root.loggingIn">
         <div class="form-group">
             <label for="nameInput">Recipe Title</label>
-            <input ng-model="newRecipe.name" id="nameInput" type="text" class="form-control" placeholder="Recipe Title">
-        </div>
-        <div class="form-group">
-            <label for="description">Recipe Description</label>
-            <textarea ng-model="newRecipe.description" id="description" rows="3" class="form-control" placeholder="Recipe Description"></textarea>
+            <input ng-model="newRecipe.title" id="nameInput" type="text" class="form-control" placeholder="Recipe Title">
         </div>
         <div class="form-group">
             <label for="Ingredients">Recipe Ingredients</label>
             <textarea ng-model="newRecipe.ingredients" id="Ingredients" rows="3" class="form-control" placeholder="Ingredients"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="directions">Recipe Directions</label>
+            <textarea ng-model="newRecipe.directions" id="directions" rows="3" class="form-control" placeholder="Recipe Directions"></textarea>
         </div>
         <button ng-click="addNewRecipe()" class="btn btn-primary btn-large ">Add</button>
         <button ng-click="closeModal()" class="btn btn-primary btn-large pull-left">Cancel</button>
