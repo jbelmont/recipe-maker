@@ -12,10 +12,6 @@ Meteor.publish("recipes", function (options, searchString) {
             {$and: [
                 {owner : this.userId},
                 {owner: {$exists: true}}
-            ]},
-            {$and : [
-                {invited : this.userId},
-                {invited : { $exists : true}}
             ]}
         ]}), { noReady: true});
 
@@ -29,10 +25,6 @@ Meteor.publish("recipes", function (options, searchString) {
             {$and:[
                 {owner: this.userId},
                 {owner: {$exists: true}}
-            ]},
-            {$and : [
-                {invited : this.userId},
-                {invited : {$exists : true}}
             ]}
         ]}, options);
 });
