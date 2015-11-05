@@ -17,13 +17,14 @@ angular.module('recipes').config(['$urlRouterProvider', '$stateProvider', '$loca
                 controller: 'RecipesListCtrl'
             })
             .state('recipeDetails', {
-                url: '/recipes/:partyId',
+                url: '/recipes/:recipeId',
                 templateUrl: 'client/recipes/views/recipe-details.ng.html',
                 controller: 'RecipeDetailsCtrl',
+                controllerAs: 'rdc',
                 resolve: {
-                    "currentUser": ["$meteor", function($meteor) {
-                        return $meteor.requireUser();
-                    }]
+                    "currentRecipe": function($meteor){
+                        return $meteor.collection(Recipes);
+                    }
                 }
             })
             .state('login', {
