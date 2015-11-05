@@ -11,3 +11,9 @@ Recipes.allow({
         return userId && recipe.owner === userId;
     }
 });
+
+Meteor.methods({
+    saveRecipe: function (recipeId, name, ingredients, directions) {
+        Recipes.update(recipeId, { $set: { name: name, ingredients: ingredients, directions: directions } });
+    }
+});
