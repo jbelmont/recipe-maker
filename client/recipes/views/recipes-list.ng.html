@@ -33,12 +33,17 @@
 
 
                 <div class="row">
-                    <div class="col-sm-8">
-                        <h2 class="ma-recipe-name">
-                            <a href="/recipes/{{recipe._id}}">{{recipe.name}}</a>
-                        </h2>
+                    <div class="center-block ma-recipe-name">
+                        <label>Recipe Title:</label>
+                        <a href="/recipes/{{recipe._id}}">{{recipe.name}}</a>
+                    </div>
+                    <div class="col-sm-6 border-right-line">
+                        <label>Recipe Ingredients:</label>
                         <p class="ma-recipe-description">{{recipe.ingredients}}</p>
-                        <p class="ma-recipe-description">{{recipe.directions}}</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Recipe Directions:</label>
+                        <p class="ma-recipe-directions">{{recipe.directions}}</p>
                     </div>
                 </div>
             </li>

@@ -22,8 +22,24 @@
 }
 
 .ma-recipe-item {
+
+  .row > .col-sm-6 {
+    text-align: center;
+
+    label {
+      font-weight: bold;
+    }
+  }
+
+  .border-right-line {
+    border-right: thin solid black;
+  }
+
   .ma-recipe-name {
+    font-size: 16px;
     margin-bottom: 20px;
+    text-align: center;
+
     a {
       color: $color6;
       text-decoration: none !important;
@@ -32,6 +48,13 @@
   }
 
   .ma-recipe-description {
+    color: $color6;
+    font-weight: 300;
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  .ma-recipe-directions {
     color: $color6;
     font-weight: 300;
     padding-left: 18px;
