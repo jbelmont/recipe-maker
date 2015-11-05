@@ -2,14 +2,18 @@ angular.module("recipes").controller("RecipeDetailsCtrl", ['$scope', '$statePara
     function($scope, $stateParams, $meteor) {
 
         $scope.recipe = $meteor.object(Recipes, $stateParams.recipeId);
-        $scope.name = $scope.recipe.name;
-        $scope.ingredients = $scope.recipe.ingredients;
-        $scope.directions = $scope.recipe.directions;
+        $scope.name1 = $scope.recipe.name;
+        $scope.ingredients1 = $scope.recipe.ingredients;
+        $scope.directions1 = $scope.recipe.directions;
         $scope.users = $meteor.collection(Meteor.users, false).subscribe('users');
 
         $scope.$meteorSubscribe('recipes');
 
-        $scope.save = function() {
+        var recipe = {
+          'name': $scope.name, 'ingredients': $scope.ingredients, 'directions': $scope.directions
+        };
+
+        $scope.save = function(recipe) {
             $scope.recipe.save()
                 .then(function(numberOfDocs){
                     console.log('save success doc affected ', numberOfDocs);
