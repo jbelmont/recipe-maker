@@ -4,27 +4,24 @@ angular.module('recipes').controller('RecipesListCtrl', ['$scope', '$meteor', '$
         $scope.perPage = 3;
         $scope.sort = { name: 1 };
         $scope.orderProperty = '1';
+
         $scope.users = $meteor.collection(Meteor.users, false).subscribe('users');
-
-        // Pass options for Server-Side Sorting in the options parameter in
-        $scope.recipes = $meteor.collection(Recipes);
-
-        $meteor.autorun($scope, function () {
-            $meteor.subscribe('recipes', {
-                limit: parseInt($scope.getReactively('perPage')),
-                skip: parseInt(($scope.getReactively('page')) - 1) * parseInt($scope.getReactively('perPage')),
-                sort: $scope.sort
-            }, $scope.getReactively('search')).then(function () {
-                $scope.recipesCount = $meteor.object(Counts, 'numberOfRecipes', false);
-            });
-        });
-
-
         $scope.recipes = $meteor.collection(function () {
             return Recipes.find({}, {
                sort : $scope.getReactively('sort')
             });
         });
+
+        $meteor.autorun($scope, function () {
+            $meteor.subscribe('recipes', {
+                limit: parseInt($scope.getReactively('perPage')),
+                skip: parseInt(($scope.getReactively('page')) - 1) * parseInt($scope.getReactively('perPage')),
+                sort: $scope.getReactively('sort')
+            }, $scope.getReactively('search')).then(function () {
+                $scope.recipesCount = $meteor.object(Counts, 'numberOfRecipes', false);
+            });
+        });
+
 
         $scope.remove = function(recipe) {
             $scope.recipes.remove(recipe);

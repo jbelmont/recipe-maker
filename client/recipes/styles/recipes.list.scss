@@ -2,6 +2,7 @@
 
 .ma-add-button-container {
   text-align: center;
+  float: right;
   width: 110px;
 
   button.btn {
@@ -10,6 +11,11 @@
     float: right;
     margin-right: 5px;
     outline: none;
+
+    padding: 8px 10px;
+    font-size: 17px;
+    line-height: 1.333333;
+    border-radius: 8px;
     
     i {
       color: $color5;
@@ -18,14 +24,38 @@
 }
 
 .ma-recipes-col {
-  padding-top: 20px;
+  margin: 25px 250px;
 }
 
 .ma-recipe-item {
 
   .ma-recipe-title {
+
+  margin-bottom: 10px;
+
+  .row > .col-sm-6 {
+    text-align: center;
+
+    label {
+      font-weight: bold;
+    }
+  }
+
+  .border-right-line {
+    border-right: thin solid black;
+  }
+
+  .ma-recipe-name {
+    font-size: 16px;
     margin-bottom: 20px;
+    text-align: center;
+
+
     a {
+
+      &:hover {
+        cursor: pointer;
+      }
       color: $color6;
       text-decoration: none !important;
       font-weight: 400;
@@ -33,6 +63,13 @@
   }
 
   .ma-recipe-ingredients {
+    color: $color6;
+    font-weight: 300;
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  .ma-recipe-directions {
     color: $color6;
     font-weight: 300;
     padding-left: 18px;

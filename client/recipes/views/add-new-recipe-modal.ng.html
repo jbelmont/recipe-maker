@@ -12,7 +12,21 @@
     <form ng-show="$root.currentUser || $root.loggingIn">
         <div class="form-group">
             <label for="nameInput">Recipe Title</label>
+<<<<<<< HEAD
             <input ng-model="newRecipe.title" id="nameInput" type="text" class="form-control" placeholder="Recipe Title">
+||||||| merged common ancestors
+            <input ng-model="newRecipe.name" id="nameInput" type="text" class="form-control" placeholder="Recipe Title">
+        </div>
+        <div class="form-group">
+            <label for="description">Recipe Description</label>
+            <textarea ng-model="newRecipe.description" id="description" rows="3" class="form-control" placeholder="Recipe Description"></textarea>
+=======
+            <input ng-model="newRecipe.name" id="nameInput" type="text" class="form-control" placeholder="Recipe Title">
+        </div>
+        <div class="form-group">
+            <label for="description">Recipe Directions</label>
+            <textarea ng-model="newRecipe.directions" id="description" rows="3" class="form-control" placeholder="Recipe Directions"></textarea>
+>>>>>>> try-to-fix-sorting-and-searching-step11
         </div>
         <div class="form-group">
             <label for="Ingredients">Recipe Ingredients</label>

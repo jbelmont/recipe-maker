@@ -2,23 +2,61 @@
 
 .ma-recipe-details-container {
   padding : 20px;
+}
 
-  .ma-map-title {
-    font-size : 16px;
-    font-weight : bolder;
+.recipe-detail-container {
+
+  margin: 25px 250px;
+
+  .row > .col-sm-6 {
+    text-align: center;
+
+    label {
+      font-weight: bold;
+    }
   }
 
-  .ma-invite-list {
-    margin-top : 20px;
-    margin-bottom : 20px;
+  .border-right-line {
+    border-right: thin solid black;
+  }
 
-    h3 {
-      font-size : 16px;
-      font-weight : bolder;
+  .ma-recipe-name {
+    width: 750px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+
+
+    a {
+
+      &:hover {
+        cursor: pointer;
+      }
+      color: $color6;
+      text-decoration: none !important;
+      font-weight: 400;
     }
+  }
 
-    ul {
-      padding : 0;
+  .ma-recipe-description {
+    color: $color6;
+    font-weight: 300;
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  .ma-recipe-directions {
+    color: $color6;
+    font-weight: 300;
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  .ma-cancel-button-container, .ma-save-button-container {
+    margin-top: 25px;
+
+    > .btn {
+      width: 100px;
     }
   }
 }

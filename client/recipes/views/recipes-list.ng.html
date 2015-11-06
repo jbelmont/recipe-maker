@@ -1,5 +1,5 @@
 <div class="row h100">
-    <div ng-if="$root.currentUser" class="col-md-6 ma-recipes-col">
+    <div ng-if="$root.currentUser" class="ma-recipes-col">
         <div class="row">
             <div class="col-xs-8">
                 <form class="form-inline search-form">
@@ -28,10 +28,9 @@
             <li dir-paginate="recipe in recipes | itemsPerPage: perPage" total-items="recipesCount.count"
                 class="list-group-item ma-recipe-item">
 
-                <i ng-click="remove(recipe)" class="ma-remove fa fa-times"
-                   ng-show="$root.currentUser && $root.currentUser._id == recipe.owner"></i>
-
-
+                <button type="button" class="btn btn-default pull-right">
+                    <span ng-click="remove(recipe)" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
                 <div class="row">
                     <div class="col-sm-8">
                         <h2 class="ma-recipe-name">
@@ -39,11 +38,25 @@
                         </h2>
                         <p class="ma-recipe-ingredients">{{recipe.ingredients}}</p>
                         <p class="ma-recipe-directions">{{recipe.directions}}</p>
+                    <div class="col-sm-8">
+                        <h2 class="ma-recipe-name">
+                            <a href="/recipes/{{recipe._id}}">{{recipe.name}}</a>
+                        </h2>
+                    <div class="center-block ma-recipe-name">
+                        <label>Recipe Title:</label>
+                        <a href="/recipes/{{recipe._id}}">{{recipe.name}}</a>
+                    </div>
+                    <div class="col-sm-6 border-right-line">
+                        <label>Recipe Ingredients:</label>
+                        <p class="ma-recipe-description">{{recipe.ingredients}}</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Recipe Directions:</label>
+                        <p class="ma-recipe-directions">{{recipe.directions}}</p>
                     </div>
                 </div>
             </li>
         </ul>
         <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
     </div>
-    <div ng-if="!$root.currentUser"></div>
 </div>
